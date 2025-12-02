@@ -1,0 +1,51 @@
+# ===========================
+# Monorepo root .gitignore
+# ===========================
+
+# Node (general)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Backend (Node/Express)
+backend/node_modules/
+backend/dist/
+backend/build/
+backend/*.log
+backend/.env
+backend/.env.local
+
+# Frontend (Angular)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/cache/
+frontend/.env
+frontend/*.log
+
+# Optional: if your frontend sits under user-management-app folder
+# frontend/user-management-app/node_modules/
+# frontend/user-management-app/dist/
+# frontend/user-management-app/.angular/cache/
+
+# IDEs & editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs, temp
+*.log
+tmp/
+temp/
+
+# Build output
+dist/
+build/
+out-tsc/
