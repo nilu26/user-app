@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import userRoutes from './routes/user.routes.js';
+import categoryRoutes from './routes/category.routes.js';
 
 // Load environment variables
 dotenv.config();
@@ -20,6 +21,9 @@ app.get('/', (req: Request, res: Response) => {
 
 // User Routes
 app.use('/api/users', userRoutes);
+
+// Category Routes
+app.use('/api/categories', categoryRoutes);
 
 // Start the server
 app.listen(PORT, () => {
