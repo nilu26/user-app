@@ -1,0 +1,69 @@
+<div class="product-management">
+  <h2>Product List (API Test)</h2>
+
+  <button (click)="showCreateForm()">+ Create New Product</button>
+  <button (click)="downloadProductReport()">Download XLSX Report</button>
+
+  <hr />
+
+  <div *ngIf="isFormVisible" class="modal-overlay">
+    <app-product-form
+      [productToEdit]="selectedProduct"
+      (formSubmitted)="handleFormSubmit($event)"
+    >
+    </app-product-form>
+  </div>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+    <input
+      type="text"
+      formControlName="search"
+      placeholder="Search by Product Name"
+    />
+    <input
+      type="text"
+      formControlName="category"
+      placeholder="Search by Category Name"
+    />
+    <button type="submit">Search</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th (click)="onSortChange('name')">Name</th>
+        <th (click)="onSortChange('category')">Category</th>
+        <th (click)="onSortChange('price')">Price</th>
+        <th>Actions (CRUD)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.category_name }}</td>
+        <td>{{ product.price | currency : "USD" }}</td>
+        <td>
+          <button (click)="showEditForm(product)">Edit</button>
+          <button (click)="deleteProduct(product.id, product.name)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="productListResponse">
+    <button
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ productListResponse.totalPages }}</span>
+    <button
+      (click)="changePage(currentPage + 1)"
+      [disabled]="currentPage === productListResponse.totalPages"
+    >
+      Next
+    </button>
+  </div>
+</div>

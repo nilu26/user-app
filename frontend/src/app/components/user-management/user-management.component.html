@@ -1,0 +1,29 @@
+<div class="user-management-container">
+  <h3>🧑‍🤝‍🧑 User Management (Read & Delete)</h3>
+  <button (click)="loadUsers()">Refresh Users</button>
+
+  <hr />
+
+  <h4>Registered Users ({{ users.length }})</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Created At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.created_at | date }}</td>
+        <td>
+          <button disabled>Edit (API ready)</button>
+          <button (click)="deleteUser(user)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

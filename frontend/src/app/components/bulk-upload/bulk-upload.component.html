@@ -1,0 +1,28 @@
+<div class="bulk-upload-container">
+  <h3>📦 Bulk Product Upload (CSV)</h3>
+
+  <p>
+    Upload a CSV file containing product data (name, price, category_name,
+    image). Uses efficient streaming to prevent timeouts (504).
+  </p>
+
+  <div class="form-group">
+    <label for="csvFile">Select CSV File:</label>
+    <input
+      type="file"
+      id="csvFile"
+      accept=".csv"
+      (change)="onFileSelected($event)"
+    />
+  </div>
+
+  <button (click)="onUpload()" [disabled]="!selectedFile || isLoading">
+    {{ isLoading ? "Processing..." : "Start Bulk Upload" }}
+  </button>
+
+  <p class="status-message">
+    Status: {{ uploadStatus || "Awaiting file selection." }}
+  </p>
+
+  <div *ngIf="isLoading" class="loader">Loading...</div>
+</div>

@@ -1,9 +1,9 @@
-import express, { Application, Request, Response } from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import userRoutes from './routes/user.routes.js';
-import categoryRoutes from './routes/category.routes.js';
-import productRoutes from './routes/product.routes.js';
+import express, { Application, Request, Response } from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import userRoutes from "./routes/user.routes.js";
+import categoryRoutes from "./routes/category.routes.js";
+import productRoutes from "./routes/product.routes.js";
 
 // Load environment variables
 dotenv.config();
@@ -13,21 +13,21 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json()); // Parses JSON bodies
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors({ origin: "http://localhost:4200" }));
 
 // Basic Check for Route
-app.get('/', (req: Request, res: Response) => {
-  res.send('Backend Server Running! Ready for API development.');
+app.get("/", (req: Request, res: Response) => {
+  res.send("Backend Server Running! Ready for API development.");
 });
 
 // User Routes
-app.use('/api/users', userRoutes);
+app.use("/api/users", userRoutes);
 
 // Category Routes
-app.use('/api/categories', categoryRoutes);
+app.use("/api/categories", categoryRoutes);
 
 // Product Routes
-app.use('/api/products', productRoutes);
+app.use("/api/products", productRoutes);
 
 // Start the server
 app.listen(PORT, () => {

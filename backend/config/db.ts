@@ -1,5 +1,5 @@
-import pg from 'pg';
-import dotenv from 'dotenv';
+import pg from "pg";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -9,7 +9,7 @@ const pool = new pg.Pool({
   host: process.env.DB_HOST,
   database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
-  port: parseInt(process.env.DB_PORT || '5432', 10),
+  port: parseInt(process.env.DB_PORT || "5432", 10),
 });
 
 // Simple query execution function
@@ -18,11 +18,11 @@ const query = (text: string, params: any[] = []) => {
 };
 
 // Check connection on startup
-pool.query('SELECT NOW()', (err, res) => {
+pool.query("SELECT NOW()", (err, res) => {
   if (err) {
-    console.error('Error connecting to PostgreSQL:', err.stack);
+    console.error("Error connecting to PostgreSQL:", err.stack);
   } else {
-    console.log('Successfully connected to PostgreSQL at:', res.rows[0].now);
+    console.log("Successfully connected to PostgreSQL at:", res.rows[0].now);
   }
 });
 

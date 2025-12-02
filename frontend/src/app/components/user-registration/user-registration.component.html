@@ -1,0 +1,49 @@
+<div class="registration-container">
+  <h3>➕ Create New User Account</h3>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email Address*</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="user@example.com"
+      />
+
+      <div
+        *ngIf="
+          registrationForm.get('email')?.invalid &&
+          registrationForm.get('email')?.touched
+        "
+        class="error-message"
+      >
+        Email is required and must be valid.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password*</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        placeholder="Min. 8 characters"
+      />
+
+      <div
+        *ngIf="
+          registrationForm.get('password')?.invalid &&
+          registrationForm.get('password')?.touched
+        "
+        class="error-message"
+      >
+        Password is required (min 8 characters).
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="registrationForm.invalid">
+      Register User
+    </button>
+  </form>
+</div>

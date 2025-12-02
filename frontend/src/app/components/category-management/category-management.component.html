@@ -1,0 +1,49 @@
+<div class="category-management-container">
+  <h3>📋 Category Management (CRUD)</h3>
+
+  <form
+    [formGroup]="categoryForm"
+    (ngSubmit)="onSubmit()"
+    class="category-form"
+  >
+    <input
+      type="text"
+      formControlName="name"
+      placeholder="Category Name"
+      required
+    />
+
+    <button type="submit" [disabled]="categoryForm.invalid">
+      {{ editingCategory ? "Save Changes" : "Add Category" }}
+    </button>
+
+    <button *ngIf="editingCategory" type="button" (click)="initForm()">
+      Cancel Edit
+    </button>
+  </form>
+
+  <hr />
+
+  <h4>Existing Categories ({{ categories.length }})</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Unique ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cat of categories">
+        <td>{{ cat.id }}</td>
+        <td>{{ cat.name }}</td>
+        <td>{{ cat.unique_id }}</td>
+        <td>
+          <button (click)="initForm(cat)">Edit</button>
+          <button (click)="deleteCategory(cat)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
